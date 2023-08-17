@@ -1,0 +1,18 @@
+{% extends 'app_ventas/index.html' %}
+{% load static %}
+
+{% block titulo %}
+    <h1 class="text-center"> 
+           Búsqueda
+    </h1>
+{% endblock titulo %}
+
+
+{% block contenido %}
+    <p> Por favor escriba el nombre del cliente </p>
+    <form action="/buscar_resultados" method="get">
+        {% csrf_token %}
+        <p><b>Nombre Cliente:</b> <input type="text" name="buscar" id="buscar"></p>
+        <input type="submit" value="Buscar">
+    </form>
+{% endblock contenido %}
