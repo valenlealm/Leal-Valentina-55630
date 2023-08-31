@@ -1,0 +1,63 @@
+{% extends 'app_ventas/index.html' %}
+{% load static %}
+
+{% block titulo %}
+    <h1 class="text-center"> 
+           
+    </h1>
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+<table>
+    <tr>
+        <td width="200"><h2>Ventas</h2></td>
+        <td>
+            <a
+            href="{% url 'create_venta' %}"
+            class="btn btn-primary btn-sm"
+            ><i class="fa fa-plus fa-lg" title="New Record"> </i>
+            </a>
+        </td>
+    </tr>
+</table>
+
+
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for venta in venta_list  %}
+            <tr>
+                <td>{{ venta.id }}</td>
+                <td>{{ venta.producto }}</td>
+                <td>{{ venta.precio }}</td>
+                <td>{{ venta.cantidad }}</td>
+                <td>
+                    <a
+                      href="{% url 'update_venta' venta.id %}"
+                      class="btn btn-primary"
+                      style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                      ><i class="fa fa-edit fa-sm" title="Edit Record"></i>
+                    </a>
+                    <a
+                      href="{% url 'delete_venta' venta.id %}"
+                      class="btn btn-danger"
+                      style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                      ><i class="fa fa-trash fa-sm" title="Delete Record"></i>
+                    </a>
+                  </td>      
+            </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock contenido %}

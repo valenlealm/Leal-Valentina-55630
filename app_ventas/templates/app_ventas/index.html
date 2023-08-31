@@ -13,22 +13,39 @@
         <link href="{% static 'app_ventas/css/styles.css' %}" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
+        <!-- Font Awesome-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     </head>
     <body>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#!">Pre-Entrega N°3</a>
+                <a class="navbar-brand" href="#!">Admin. Comercial</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'home' %}">Inicio</a></li>
+                        
+                        {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'productos' %}">Productos</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'clientes' %}">Clientes</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'vendedores' %}"> Vendedores</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'clienteform' %}">Ingreso  Nuevo Cliente</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'ventas' %}"> Ventas</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'consultacliente' %}">Consulta Cliente</a></li>
-                     
+                        <p style="color:blue">Hola {{user.username}}!</p>
+                        <div class="text-center">
+                            <img src="{{ request.session.avatar }}" height="40px" weight="40px"/>
+                        </div>
+                        <a class="btn btn-primary" href="{% url 'editar_perfil' %}">Perfil</a>
+                        <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+                    {% else %}    
+                        <a class="btn btn-success" href="{% url 'registro' %}">Sign up</a>
+                        <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+                    {% endif %}
+                    
+                                        
+                                       
+
                         <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -60,7 +77,12 @@
     
         
         <footer class="py-5 bg-dark">
+
+            <!-- Acerca de mí -->
+            <a class="m-0 text-center text-white" href="{% url 'about_me' %}" >Acerca de mí</a>
+
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+            
         </footer>
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

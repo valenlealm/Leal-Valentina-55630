@@ -1,0 +1,17 @@
+{% extends 'app_ventas/index.html' %}
+{% load static %}
+
+{% block titulo %}
+    
+{% endblock titulo %}
+
+{% block contenido %}
+    <h2>Sign up</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Crear usuario">
+    </form>
+{% endblock contenido %}
